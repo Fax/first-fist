@@ -1,0 +1,24 @@
+{
+  "version": "0.0.0",
+  "name": "first-fist",
+  "version": "0.0.0",
+  "author": "",
+  "license": "MIT",
+  
+  "repository": "fax/first-fist",
+  "author": "fax",
+  
+  "dependencies": {
+    "browserify": "*",
+    "browser-sync": "*",
+    "del": "*",
+    "gulp": "*",
+    "gulp-connect": "*",
+    "gulp-gh-pages": "*", 
+    "gulp-util": "*",
+    "merge-stream": "*",
+    "phaser": "*",
+    "vinyl-source-stream": "*",
+    "watchify": "*"
+  }
+}
