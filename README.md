@@ -3,6 +3,11 @@
 First Fist by
 [fax](https://github.com/fax).
 
+This is not a game but an just a test. 
+The generator created a base that has been converted to a valid
+ES6 application. Babelify works correctly and browserify creates a single
+bundled js.
+
 Initial scaffolding generated with [generator-gamejam](https://github.com/belen-albeza/generator-gamejam/).
 
 ## Installation
