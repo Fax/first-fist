@@ -1,8 +1,10 @@
 'use strict';
+var path = require('path');
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 
+var babelify = require('babelify');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream');
@@ -14,23 +16,32 @@ var merge = require('merge-stream');
 
 var ghpages = require('gulp-gh-pages');
 
-
-
+var SOURCE_PATH = './src/js';
+var ENTRY_FILE = SOURCE_PATH + '/main.js';
 //
 // browserify and js
 //
 
-var bundler = browserify([
-  './src/js/main.js'
-]);
+var bundler = browserify(
+  {
+    entries: [ENTRY_FILE],
+    debug: true,
+    extensions: ['.js', '.json', '.es6'],
+    paths: ['./node_modules', './src/js/']
+  });
 
-var bundle = function ()  {
-  return bundler
+var bundle = function () {
+  return  bundler
+    .transform(babelify, {
+      presets: ["es2015"]
+      
+    })
+
     .bundle()
     .on('error', gutil.log)
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('.tmp/js/'))
-    .pipe(browserSync.stream({once: true}));
+    .pipe(browserSync.stream({ once: true }));
 };
 
 
@@ -39,7 +50,7 @@ gulp.task('browserify', bundle);
 // 3rd party libs that don't play nice with browserify
 gulp.task('libs', function () {
   var dir = './node_modules/phaser/build/';
-  return gulp.src(['phaser.min.js', 'phaser.map'], { cwd: dir, base: dir})
+  return gulp.src(['phaser.min.js', 'phaser.map'], { cwd: dir, base: dir })
     .pipe(gulp.dest('./.tmp/js/lib/'));
 });
 
@@ -49,9 +60,8 @@ gulp.task('js', ['browserify', 'libs']);
 // build and deploy
 //
 
-gulp.task('build', ['js']);
 
-gulp.task('dist', ['build'], function () {
+gulp.task('build', ['js'], function () {
   var rawFiles = gulp.src([
     'index.html', 'raw.html',
     'styles.css',

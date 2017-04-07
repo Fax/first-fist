@@ -1,24 +1,25 @@
 {
   "version": "0.0.0",
   "name": "first-fist",
-  "version": "0.0.0",
-  "author": "",
-  "license": "MIT",
-  
-  "repository": "fax/first-fist",
   "author": "fax",
-  
+  "license": "MIT",
+  "repository": "fax/first-fist",
   "dependencies": {
     "browserify": "*",
     "browser-sync": "*",
     "del": "*",
     "gulp": "*",
     "gulp-connect": "*",
-    "gulp-gh-pages": "*", 
+    "gulp-gh-pages": "*",
     "gulp-util": "*",
     "merge-stream": "*",
     "phaser": "*",
     "vinyl-source-stream": "*",
     "watchify": "*"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
+    "path": "^0.12.7"
   }
 }
